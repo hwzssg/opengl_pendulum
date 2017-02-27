@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <cmath>
 
 draw::draw(int argc, char **argv) {
     glutInit(&argc, argv);
@@ -40,6 +41,22 @@ void draw::drawTriangle(initializer_list<double> list) {
     glVertex2d(points[0], points[1]);
     glVertex2d(points[2], points[3]);
     glVertex2d(points[4], points[5]);
+    glEnd();
+}
+
+void draw::drawCircle(double cx, double cy, double r) {
+    int points = 100;
+
+    glBegin(GL_POLYGON);
+    for(int i = 0; i < points; i++) {
+        double theta = 2.0f * 3.1415926f * double(i) / double(points);
+
+        double x = r * cos(theta);
+        double y = r * sin(theta);
+
+        glVertex2d(x + cx, y + cy);
+
+    }
     glEnd();
 }
 

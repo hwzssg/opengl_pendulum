@@ -19,6 +19,7 @@ public:
     void setColor(string color);
 
     void drawTriangle(initializer_list<double> list);
+    void drawCircle(double cx, double cy, double r);
 
     void start();
 

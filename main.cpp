@@ -9,7 +9,19 @@ draw* panel;
 void drawFunc() {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    panel->setColor("#33b5e5");
+    panel->setColor("#EC407A");
+    panel->drawCircle(0, 0, 0.8);
+
+    panel->setColor("#7E57C2");
+    panel->drawTriangle(
+            {
+                    -0.8, 0.76,
+                    0.8, 0.76,
+                    0, -0.8
+            }
+    );
+
+    panel->setColor("#9575CD");
     panel->drawTriangle(
             {
                     -0.7, 0.7,
