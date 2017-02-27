@@ -27,3 +27,10 @@
 *.exe
 *.out
 *.app
+
+# Build folders
+build/
+bin/
+
+# Clion folders
+.idea/
