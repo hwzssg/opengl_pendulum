@@ -6,29 +6,30 @@ using namespace std;
 
 draw* panel;
 
+
+void drawBob(float x, float y) {
+    float cx = x;
+    float cy = -1.0f + y;
+
+    glTranslatef(0.0f, 0.4f, 0.0f);
+    panel->setColor("#BA68C8");
+    panel->drawRect({-0.02f, 0, 0.02f, 0, 0.02f+cx, cy, -0.02f+cx, cy});
+
+    glTranslatef(cx, cy, 0.0f);
+    panel->setColor("#9C27B0");
+    panel->drawCircle(0, 0, 0.15);
+
+    panel->setColor("#AB47BC");
+    panel->drawCircle(0, 0, 0.1);
+}
+
 void drawFunc() {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    panel->setColor("#EC407A");
-    panel->drawCircle(0, 0, 0.8);
+    glMatrixMode(GL_MODELVIEW);      // To operate on Model-View matrix
+    glLoadIdentity();                // Reset the model-view matrix
 
-    panel->setColor("#7E57C2");
-    panel->drawTriangle(
-            {
-                    -0.8, 0.76,
-                    0.8, 0.76,
-                    0, -0.8
-            }
-    );
-
-    panel->setColor("#9575CD");
-    panel->drawTriangle(
-            {
-                    -0.7, 0.7,
-                    0.7, 0.7,
-                    0, -0.7
-            }
-    );
+    drawBob(0.2, 0);
 
     glFlush();
 }
