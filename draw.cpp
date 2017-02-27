@@ -28,7 +28,7 @@ void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integ
 
 draw::draw(int argc, char **argv) {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE);
+    glutInitDisplayMode(GLUT_DOUBLE);
     glutInitWindowSize(720, 720);
     glutInitWindowPosition(600, 200);
 }
@@ -99,6 +99,7 @@ void glInit() {
 void draw::start() {
     glInit();
     glutDisplayFunc(drawFunc);
+    glutIdleFunc(drawFunc);
     glutReshapeFunc(reshape);
     glutMainLoop();
 }
