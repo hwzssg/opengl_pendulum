@@ -33,13 +33,13 @@ void draw::setColor(string color) {
 
 }
 
-void draw::drawTriangle(initializer_list<float> list) {
-    vector<float> points = vector<float>(list.begin(), list.end());
+void draw::drawTriangle(initializer_list<double> list) {
+    vector<double > points = vector<double >(list.begin(), list.end());
 
     glBegin(GL_TRIANGLES);
-    glVertex2f(points[0], points[1]);
-    glVertex2f(points[2], points[3]);
-    glVertex2f(points[4], points[5]);
+    glVertex2d(points[0], points[1]);
+    glVertex2d(points[2], points[3]);
+    glVertex2d(points[4], points[5]);
     glEnd();
 }
 

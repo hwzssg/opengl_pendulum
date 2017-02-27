@@ -18,7 +18,7 @@ public:
     void setDrawFunction(callback_function drawFunc);
     void setColor(string color);
 
-    void drawTriangle(initializer_list<float> list);
+    void drawTriangle(initializer_list<double> list);
 
     void start();
 
