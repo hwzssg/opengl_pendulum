@@ -13,14 +13,14 @@ int length = 20;
 
 
 // Clock related variables
-int seconds = 20, minutes = 45, hours = 13;
+int seconds = 20;
 
 draw* panel;
 
 void drawClock() {
     float secondsAngle = (seconds%60)/60.0f*360;
-    float minutesAngle = (minutes%60)/60.0f*360;
-    float hoursAngle = (hours%12)/12.0f*360;
+    float minutesAngle = (seconds/60)/60.0f*360;
+    float hoursAngle = (seconds/60/60)/12.0f*360;
 
     glLoadIdentity();
 
@@ -77,6 +77,8 @@ void drawFunc() {
 
     drawBob(angle);
     drawClock();
+
+    seconds++;
 
     glutSwapBuffers();
 }
