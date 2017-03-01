@@ -7,12 +7,12 @@ using namespace std;
 
 
 // Pendulum related variables
-float angle = 3.14f / 6;
+double angle = M_PI / 6;
 double angleAccel, angleVelocity = 0, dt = 0.1;
 int length = 20;
 
 // Clock related variables
-int seconds = 20;
+int clocks, seconds;
 
 draw* panel;
 
@@ -45,13 +45,13 @@ void drawClock() {
     glRotatef(hoursAngle, 0, 0, 1);
 }
 
-void drawBob(float passedAngle) {
+void drawBob(double passedAngle) {
     glLoadIdentity();
 
-    float angleDegree = passedAngle/3.14f*180;
+    double angleDegree = passedAngle/M_PI*180;
 
     glTranslatef(0, 0.4f, 0.0f);
-    glRotatef(angleDegree, 0, 0, 1);
+    glRotated(angleDegree, 0, 0, 1);
     panel->setColor("#BA68C8");
     panel->drawRect(0, 0, 0.03, -1);
 
@@ -68,7 +68,7 @@ void drawBob(float passedAngle) {
 void drawFunc() {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glMatrixMode(GL_MODELVIEW);      // To operate on Model-View matrix
+    glMatrixMode(GL_MODELVIEW);
 
     angleAccel = -9.81 / length * sin(angle);
     angleVelocity += angleAccel * dt;
@@ -77,8 +77,12 @@ void drawFunc() {
     drawBob(angle);
     drawClock();
 
-    if(angle >= 3.14f/6)
+    clocks++;
+    if(clocks > 20) {
         seconds++;
+        clocks = 0;
+    }
+
 
     glutSwapBuffers();
 }
