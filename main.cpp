@@ -4,17 +4,18 @@
 
 using namespace std;
 
+bool direction = true;
+float angle = 0;
 draw* panel;
 
-void drawBob(float x, float y) {
-    float cx = x;
-    float cy = -1.0f + y;
+void drawBob(float angle) {
 
-    glTranslatef(0.0f, 0.4f, 0.0f);
+    glTranslatef(-0.015f, 0.4f, 0.0f);
+    glRotatef(angle, 0, 0, 1);
     panel->setColor("#BA68C8");
-    panel->drawRect({-0.015f, 0, 0.015f, 0, 0.015f+cx, cy, -0.015f+cx, cy});
+    panel->drawRect({-0.015f, 0, 0.015f, 0, 0.015f, -1, -0.015f, -1});
 
-    glTranslatef(cx, cy, 0.0f);
+    glTranslatef(0.015f, -1, 0.0f);
     panel->setColor("#9C27B0");
     panel->drawCircle(0, 0, 0.15);
 
@@ -28,7 +29,13 @@ void drawFunc() {
     glMatrixMode(GL_MODELVIEW);      // To operate on Model-View matrix
     glLoadIdentity();                // Reset the model-view matrix
 
-    drawBob(0.2, 0);
+    drawBob(angle);
+
+    if(direction) angle++;
+    else angle--;
+
+    if(angle > 45) direction = false;
+    else if(angle < -45) direction = true;
 
     glutSwapBuffers();
 }
