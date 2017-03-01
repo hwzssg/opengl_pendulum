@@ -2,7 +2,6 @@
 #include "draw.h"
 #include <GL/glut.h>
 #include <cmath>
-#include <ctime>
 
 using namespace std;
 
@@ -89,7 +88,6 @@ int main(int argc, char **argv) {
     time_t now = time(0);
     tm *ltm = localtime(&now);
     seconds = ltm->tm_sec + 60*ltm->tm_min + 60*60*ltm->tm_hour;
-
 
     panel = new draw(argc, argv);
     panel->setTitle("Pendulum Simulation");

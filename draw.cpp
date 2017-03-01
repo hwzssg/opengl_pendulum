@@ -6,24 +6,19 @@
 #include <cmath>
 
 
-void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integer
-    // Compute aspect ratio of the new window
-    if (height == 0) height = 1;                // To prevent divide by 0
+void reshape(GLsizei width, GLsizei height) {
+    if (height == 0) height = 1;
     GLfloat aspect = (GLfloat)width / (GLfloat)height;
 
-    // Set the viewport to cover the new window
     glViewport(0, 0, width, height);
 
-    // Set the aspect ratio of the clipping area to match the viewport
-    glMatrixMode(GL_PROJECTION);  // To operate on the Projection matrix
-    glLoadIdentity();             // Reset the projection matrix
-    if (width >= height) {
-        // aspect >= 1, set the height from -1 to 1, with larger width
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    
+    if (width >= height)
         gluOrtho2D(-1.0 * aspect, 1.0 * aspect, -1.0, 1.0);
-    } else {
-        // aspect < 1, set the width to -1 to 1, with larger height
+    else
         gluOrtho2D(-1.0, 1.0, -1.0 / aspect, 1.0 / aspect);
-    }
 }
 
 draw::draw(int argc, char **argv) {
@@ -73,16 +68,6 @@ void draw::drawRect(float x, float y, float width, float height) {
     glTranslatef(-width/2, 0, 0);
     drawRect({ x, y, x2, y, x2, y3, x, y3 });
     glTranslatef(width/2, 0, 0);
-}
-
-void draw::drawTriangle(initializer_list<float> list) {
-    vector<float> points = vector<float>(list.begin(), list.end());
-
-    glBegin(GL_TRIANGLES);
-    glVertex2f(points[0], points[1]);
-    glVertex2f(points[2], points[3]);
-    glVertex2f(points[4], points[5]);
-    glEnd();
 }
 
 void draw::drawCircle(float cx, float cy, float r) {
