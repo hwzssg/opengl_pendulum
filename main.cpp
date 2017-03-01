@@ -28,10 +28,10 @@ void drawClock() {
 void drawBob(float passedAngle) {
     glLoadIdentity();
 
-    float angleRadian = passedAngle/3.14f*180;
+    float angleDegree = passedAngle/3.14f*180;
 
     glTranslatef(0, 0.4f, 0.0f);
-    glRotatef(angleRadian, 0, 0, 1);
+    glRotatef(angleDegree, 0, 0, 1);
     panel->setColor("#BA68C8");
     panel->drawRect(0, 0, 0.03, -1);
 
