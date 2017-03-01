@@ -11,7 +11,6 @@ float angle = 3.14f / 6;
 double angleAccel, angleVelocity = 0, dt = 0.1;
 int length = 20;
 
-
 // Clock related variables
 int seconds = 20;
 
@@ -78,7 +77,8 @@ void drawFunc() {
     drawBob(angle);
     drawClock();
 
-    seconds++;
+    if(angle >= 3.14f/6)
+        seconds++;
 
     glutSwapBuffers();
 }
