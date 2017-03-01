@@ -33,7 +33,7 @@ void drawBob(float passedAngle) {
     glTranslatef(0, 0.4f, 0.0f);
     glRotatef(angleRadian, 0, 0, 1);
     panel->setColor("#BA68C8");
-    panel->drawRect({-0.015f, 0, 0.015f, 0, 0.015f, -1, -0.015f, -1});
+    panel->drawRect(0, 0, 0.03, -1);
 
     glTranslatef(0, -1, 0.0f);
     panel->setColor("#9C27B0");

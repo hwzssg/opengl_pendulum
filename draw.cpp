@@ -66,6 +66,15 @@ void draw::drawRect(initializer_list<float> list) {
     glEnd();
 }
 
+void draw::drawRect(float x, float y, float width, float height) {
+    float x2 = x + width;
+    float y3 = y + height;
+
+    glTranslatef(-width/2, 0, 0);
+    drawRect({ x, y, x2, y, x2, y3, x, y3 });
+    glTranslatef(width/2, 0, 0);
+}
+
 void draw::drawTriangle(initializer_list<float> list) {
     vector<float> points = vector<float>(list.begin(), list.end());
 

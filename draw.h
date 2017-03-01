@@ -19,6 +19,7 @@ public:
     void setColor(string color);
 
     void drawRect(initializer_list<float> list);
+    void drawRect(float x, float y, float width, float height);
     void drawTriangle(initializer_list<float> list);
     void drawCircle(float cx, float cy, float r);
 
