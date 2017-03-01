@@ -9,7 +9,7 @@ using namespace std;
 // Pendulum related variables
 double angle = M_PI / 6;
 double angleAccel, angleVelocity = 0, dt = 0.1;
-int length = 20;
+float length = 9.55;
 
 // Clock related variables
 int clocks, seconds;
@@ -78,7 +78,7 @@ void drawFunc() {
     drawClock();
 
     clocks++;
-    if(clocks > 20) {
+    if(clocks > 60) {
         seconds++;
         clocks = 0;
     }
