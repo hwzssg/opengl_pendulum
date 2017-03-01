@@ -1,21 +1,26 @@
 #include <iostream>
 #include "draw.h"
 #include <GL/glut.h>
+#include <cmath>
 
 using namespace std;
 
-bool direction = true;
-float angle = 0;
+float angle = 3.14f / 6;
+double angleAccel, angleVelocity = 0, dt = 0.1;
+int length = 20;
+
 draw* panel;
 
-void drawBob(float angle) {
+void drawBob(float passedAngle) {
 
-    glTranslatef(-0.015f, 0.4f, 0.0f);
-    glRotatef(angle, 0, 0, 1);
+    float angleRadian = passedAngle/3.14f*180;
+
+    glTranslatef(0, 0.4f, 0.0f);
+    glRotatef(angleRadian, 0, 0, 1);
     panel->setColor("#BA68C8");
     panel->drawRect({-0.015f, 0, 0.015f, 0, 0.015f, -1, -0.015f, -1});
 
-    glTranslatef(0.015f, -1, 0.0f);
+    glTranslatef(0, -1, 0.0f);
     panel->setColor("#9C27B0");
     panel->drawCircle(0, 0, 0.15);
 
@@ -29,13 +34,12 @@ void drawFunc() {
     glMatrixMode(GL_MODELVIEW);      // To operate on Model-View matrix
     glLoadIdentity();                // Reset the model-view matrix
 
+
+    angleAccel = -9.81 / length * sin(angle);
+    angleVelocity += angleAccel * dt;
+    angle += angleVelocity * dt;
+
     drawBob(angle);
-
-    if(direction) angle++;
-    else angle--;
-
-    if(angle > 45) direction = false;
-    else if(angle < -45) direction = true;
 
     glutSwapBuffers();
 }
