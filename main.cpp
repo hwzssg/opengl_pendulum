@@ -5,13 +5,23 @@
 
 using namespace std;
 
+
+// Pendulum related variables
 float angle = 3.14f / 6;
 double angleAccel, angleVelocity = 0, dt = 0.1;
 int length = 20;
 
+
+// Clock related variables
+int seconds = 20, minutes = 45, hours = 13;
+
 draw* panel;
 
 void drawClock() {
+    float secondsAngle = (seconds%60)/60.0f*360;
+    float minutesAngle = (minutes%60)/60.0f*360;
+    float hoursAngle = (hours%12)/12.0f*360;
+
     glLoadIdentity();
 
     glTranslatef(0, 0.4f, 0.0f);
@@ -21,8 +31,19 @@ void drawClock() {
     panel->setColor("#F48FB1");
     panel->drawCircle(0, 0, 0.35);
 
+    panel->setColor("#F50057");
 
+    glRotatef(-secondsAngle, 0, 0, 1);
+    panel->drawRect(0, 0, 0.008, 0.3);
+    glRotatef(secondsAngle, 0, 0, 1);
 
+    glRotatef(-minutesAngle, 0, 0, 1);
+    panel->drawRect(0, 0, 0.015, 0.26);
+    glRotatef(minutesAngle, 0, 0, 1);
+
+    glRotatef(-hoursAngle, 0, 0, 1);
+    panel->drawRect(0, 0, 0.025, 0.15);
+    glRotatef(hoursAngle, 0, 0, 1);
 }
 
 void drawBob(float passedAngle) {
